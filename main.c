@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     {
         init_pair(i, i, COLOR_WHITE);
     }
-    while (1) {
+    while (not_quit()) {
       visualise_and_advance_general(&ant, rule); // A second function similar to visualise_and_advance was created, however it also takes as an argument rule so that it can be made used of
     }
   }else{
