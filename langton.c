@@ -66,7 +66,7 @@ void move_forward(struct ant *ant) { // When moving forward the ant will leave t
 
 
 void apply_rule(enum colour *colour, struct ant* ant) {
-    *colour == WHITE ? turn_right(ant) : turn_left(ant); // if colour of the cell is white then make the ant turn right, otherwise make it turn left
+    *colour == WHITE ? turn_left(ant) : turn_right(ant); // if colour of the cell is white then make the ant turn right, otherwise make it turn left
     *colour = *colour == WHITE ? BLACK : WHITE; // if colour of the cell is equal to white then turn it to black, otherwise turn it to white
 }
 

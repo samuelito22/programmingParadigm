@@ -11,6 +11,7 @@ struct rule* rule; // rule is defined from the struct rule in langton.h
 void handle_keyboard_interrupt() {
     end_visualisation();
     free(rule); // Memory of rule is freed at the end of the program
+    printf("Keyboard interrupt. Exiting program");
     exit(0);
 }
 
@@ -22,7 +23,7 @@ int main(int argc, char** argv) {
   if (argc > 1) { // Checking if there is more than one argument, where the first argument is the name of the file
       for (int j = 0; j < (int)strlen(argv[1]); j++) { // If a second argument is present then it checked for any invalid character (not L or R) using a for loop which checks every character 
           if (argv[1][j] != 'L' && argv[1][j] != 'R') {
-              printf("Invalid input\n");
+              printf("Invalid input. Exiting program\n");
               free(rule); // Memory of rule is freed at the end of the program
               exit(0);
           }
