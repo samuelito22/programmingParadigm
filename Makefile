@@ -1,7 +1,7 @@
 CC = gcc # Compiler
 CFLAGS = -Wall -Wextra -fPIC -c -std=c11 # C compiler flags
 LDFLAGS = -lncursesw # Linker flags
-RPATH = -Wl,-rpath,'$$ORIGIN'
+RPATH = -Wl,-rpath,'$$ORIGIN' # Telling the linker where to look for the libraries
 
 all: ant run # run will automatically run ant with a VARIANT passed in
 
