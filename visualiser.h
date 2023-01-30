@@ -9,9 +9,9 @@ static int max_y;
 
 typedef enum colour cell;
 
-void start_visualisation(struct ant* ant);
-void visualise_and_advance(struct ant* ant);
-void visualise_and_advance_general(struct ant* ant, struct rule* rule);
+void start_visualisation();
+void visualise_and_advance();
+void visualise_and_advance_general();
 bool not_quit();
 cell cell_at_fct(int y, int x); //optional
 void end_visualisation();
