@@ -1,20 +1,21 @@
 CC = gcc # Compiler
-CFLAGS = -Wall -Wextra -fPIC -c # C compiler flags
+CFLAGS = -Wall -Wextra -fPIC -c -std=c11 # C compiler flags
 LDFLAGS = -lncursesw # Linker flags
+RPATH = -Wl,-rpath,'$$ORIGIN'
 
 all: ant run # run will automatically run ant with a VARIANT passed in
 
-ant: main.o 
-	$(CC) main.o -L. -lant -o ant $(LDFLAGS)
+ant: clean library
+	$(CC) -L. -lant -o ant $(LDFLAGS) $(RPATH)
 
 # Defining the executable files needed to build ant.o
-main.o: main.c
-	$(CC) $(CFLAGS) main.c -o main.o
-
 library: libant.so
 
-libant.so: visualiser.o langton.o # Will create a shared library with functions from visualiser and langton
-	$(CC) -shared visualiser.o langton.o -o libant.so $(LDFLAGS)
+libant.so: visualiser.o langton.o main.o# Will create a shared library with functions from visualiser and langton
+	$(CC) -shared visualiser.o langton.o main.o -o libant.so $(LDFLAGS)
+
+main.o: main.c langton.h visualiser.h
+	$(CC) $(CFLAGS) main.c $(LDFLAGS) -o main.o
 
 visualiser.o: visualiser.c langton.h visualiser.h
 	$(CC) $(CFLAGS) visualiser.c $(LDFLAGS) -o visualiser.o
